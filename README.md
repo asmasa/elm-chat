@@ -1,7 +1,7 @@
 ## つくるもの
 チャットアプリを作ってみましょう。
 
-最初の段階ではハリボテの実装となっています。  
+最初の段階ではハリボテの実装となっています。
 `src/Main.elm` に機能追加をしていくことでハリボテ実装を徐々になくしていきます。
 実装例は`src/Sample`にあります。
 
@@ -16,9 +16,9 @@
 
 ## Step0. サーバを起動する
 ```
-$ git clone git@github.com:heartscry4423/elm-chat.git
+$ git clone git@github.com:asmasa/elm-chat.git
     or
-$ git clone https://github.com/heartscry4423/elm-chat.git
+$ git clone https://github.com/asmasa/elm-chat.git
 ```
 
 ```
@@ -61,10 +61,10 @@ update msg model =
 *実装例は`src/Sample/Main_1.elm`にあります*
 
 ### Modelを変更してみよう
-Modelはトーク(`Talk`)を保持していません。 __トークのList__ を保持できるように、プロパティを`type alias Model`に追加してみましょう  
+Modelはトーク(`Talk`)を保持していません。 __トークのList__ を保持できるように、プロパティを`type alias Model`に追加してみましょう
 
 ### Modelを初期化してみよう
-トークListを追加したModelを初期化するために`initialModel`関数を変更してみましょう  
+トークListを追加したModelを初期化するために`initialModel`関数を変更してみましょう
 初期化するトークの値には`sampleTalk1`, `sampleTalk2`を使って下さい
 
 ### Modelのトークを使ってviewを実装してみよう
@@ -97,21 +97,21 @@ msgとupdateの処理を定義し、アプリケーションの操作に従っ�
 テキストエリアで入力した文字列を保持できるように、プロパティをModelに追加してみよう
 
 #### Msgを変更してみよう
-テキストエリアに入力される度に発生するイベントに対応するMsg`ChangedNewTalkTextAreaValue String`を`type Msg`に追加してみよう  
+テキストエリアに入力される度に発生するイベントに対応するMsg`ChangedNewTalkTextAreaValue String`を`type Msg`に追加してみよう
 `type Msg`はカスタムタイプなので`|`で区切って複数の値を定義します
 
 #### updateを変更してみよう
 テキストエリアに入力されると、`Modelでもつテキストエリアで入力した値をもつプロパティ`が変更されるように修正してみよう
 
-Msgが`ChangedNewTalkTextAreaValue stringValue`の時に、`Modelでもつテキストエリアで入力した値をもつプロパティ`の値を`stringValue`の値に変えるように実装してみよう  
+Msgが`ChangedNewTalkTextAreaValue stringValue`の時に、`Modelでもつテキストエリアで入力した値をもつプロパティ`の値を`stringValue`の値に変えるように実装してみよう
 Modelはレコードなので、現在のレコードを元に該当箇所のみ更新した新しいレコードを生成させます
 
 #### viewを変更してみよう
-入力値が反映されるように、[textarea](https://package.elm-lang.org/packages/elm/html/latest/Html#textarea)関数の属性(第一引受数のList)に[Html.Attributes.value](https://package.elm-lang.org/packages/elm/html/latest/Html-Attributes#value)を追加します  
+入力値が反映されるように、[textarea](https://package.elm-lang.org/packages/elm/html/latest/Html#textarea)関数の属性(第一引受数のList)に[Html.Attributes.value](https://package.elm-lang.org/packages/elm/html/latest/Html-Attributes#value)を追加します
 `Html.Attributes.value` の引数には`Modelに保持しているテキストエリアで入力した値を持つプロパティ`を追加します
 
-テキストエリアの入力イベントが発生するように`view`関数を変更します  
-`textarea`関数の属性(第一引受数のList)に[Html.Events.onInput](https://package.elm-lang.org/packages/elm/html/latest/Html-Events#onInput)を追加します。  
+テキストエリアの入力イベントが発生するように`view`関数を変更します
+`textarea`関数の属性(第一引受数のList)に[Html.Events.onInput](https://package.elm-lang.org/packages/elm/html/latest/Html-Events#onInput)を追加します。
 `onInput`関数の引数には発生させたいMsgを渡します。
 
 ### 投稿できるようにする
@@ -123,16 +123,16 @@ Modelはレコードなので、現在のレコードを元に該当箇所のみ
 
 Msgが`ClickedPostButton`の時の実装を変えていきます。
 
-idを採番します。  
-重複を起こさないようにすればどんなルールで採番してもよいです。  
+idを採番します。
+重複を起こさないようにすればどんなルールで採番してもよいです。
 サンプルではModelで次のidを管理するようにしています。
 
 新しい投稿を作ります。
 `type alias Talk`の定義を見ながら作ってみて下さい
 
-`「投稿！」ボタンを押した時に発生するイベントに対応するMsg`の時に、Modelのトークを更新します  
-Listの結合を行いレコードの更新を行います。  
-Listの結合には、`++`、または[List.append](https://package.elm-lang.org/packages/elm/core/latest/List#append)関数を使います  
+`「投稿！」ボタンを押した時に発生するイベントに対応するMsg`の時に、Modelのトークを更新します
+Listの結合を行いレコードの更新を行います。
+Listの結合には、`++`、または[List.append](https://package.elm-lang.org/packages/elm/core/latest/List#append)関数を使います
 `++`の例だと`[1,1,2] ++ [3,5,8] == [1,1,2,3,5,8]`のように使います。
 
 #### viewを変更してみよう
@@ -160,7 +160,7 @@ Listの結合には、`++`、または[List.append](https://package.elm-lang.org
 トークの削除ボタンを押すと、当該トークが画面から削除される機能を追加しましょう
 
 #### Msgについて
-`削除ボタンを押した時に発生するイベントに対応するMsg`を追加して下さい。  
+`削除ボタンを押した時に発生するイベントに対応するMsg`を追加して下さい。
 削除するにはトークのidが必要になります。
 
 #### updateを変更してみよう
@@ -174,7 +174,7 @@ Listの結合には、`++`、または[List.append](https://package.elm-lang.org
 トークのidを渡すことを忘れずにしてください
 
 ## チャレンジ編！！
-めっちゃ速く終わってしまった方は以下にチャレンジしてみよう！  
+めっちゃ速く終わってしまった方は以下にチャレンジしてみよう！
 なお実装例は用意していません。。。
 
 - トークの編集機能をつくる
@@ -184,7 +184,7 @@ Listの結合には、`++`、または[List.append](https://package.elm-lang.org
 ### トークの編集機能をつくる
 自分が投稿したトークのみ、編集ボタンが表示されるようにしましょう
 
-編集ボタンを押すと当該トークだけ編集中のviewに切り替わり、メッセージ内容を変更できます  
+編集ボタンを押すと当該トークだけ編集中のviewに切り替わり、メッセージ内容を変更できます
 完了ボタンを押すと元のトーク表示に戻ります
 
 #### やること
